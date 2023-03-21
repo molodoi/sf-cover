@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use OpenAI;
 use App\Form\CoverType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,15 +16,28 @@ class AppController extends AbstractController
     {
         $form = $this->createForm(CoverType::class);
         $form->handleRequest($request);
-        
-        if ($form->isSubmitted() && $form->isValid()) {
-            dd($form->getData());
 
-            return $this->redirectToRoute('app_index', [], Response::HTTP_SEE_OTHER);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $client = OpenAI::client($this->getParameter('openai'));
+            $response = $client->chat()->create([
+                'model' => 'gpt-3.5-turbo',
+                'messages' => [
+                    ['role' => 'user', 'content' => 'My name is'.$data['firstname'].' '.$data['lastname']],
+                    ['role' => 'user', 'content' => 'My defrees '.$data['degrees']],
+                    ['role' => 'user', 'content' => 'Target company'.$data['company']],
+                    ['role' => 'user', 'content' => 'Target job'.$data['job']],
+                    ['role' => 'user', 'content' => 'Offer '.$data['offer']],
+                    ['role' => 'user', 'content' => 'Write a persuasive and personalized cover letter'],
+                ],
+            ]);
+
+            $message = $response->toArray()['choices'][0]['message']['content'];
         }
 
         return $this->render('app/index.html.twig', [
-            'form' => $form,
+            'form' => $form->createView(),
+            'message' => $message ?? null,
         ]);
     }
 }

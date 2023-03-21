@@ -28,7 +28,7 @@ class CoverType extends AbstractType
                     'class' => 'w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm',
                 ]
             ])
-            ->add('degrees', TextareaType::class, [
+            ->add('degrees', TextType::class, [
                 'label' => false,
                 'attr' => [
                     'placeholder' => 'Your degrees (ex: Master, Bachelor)',
@@ -53,6 +53,7 @@ class CoverType extends AbstractType
                 'label' => false,
                 'attr' => [
                     'placeholder' => 'Job offer description..',
+                    'rows' => '8',
                     'class' => 'w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm',
                 ]
             ])
@@ -60,7 +61,7 @@ class CoverType extends AbstractType
                 'label' => 'Generate cover letter',
                 'attr' => [
                     'placeholder' => 'Generate cover letter',
-                    'class' => 'block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700',
+                    'class' => 'text-sm font-medium rounded-md bg-red-600 px-5 py-2.5 text-white shadow hover:bg-red-700 focus:outline-none focus:ring active:bg-red-500 sm:w-auto',
                 ]
             ])
         ;

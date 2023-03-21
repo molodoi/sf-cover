@@ -1,10 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Welcome!{% endblock %}
+{% block title %}Your a cover letter with IA!{% endblock %}
 
 {% block body %}
     {% include('partial/navbar.html.twig') %}
-    <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-    {{ form(form, {attr: {'class': 'flex flex-col space-y-4'}}) }}
+    <div class="mx-auto max-w-screen-xl px-4 py-5 sm:px-6 lg:px-8">
+        {% if message is null %}
+            <p>Fill out the form below and get your cover letter in minutes.</p>
+            <hr class="my-4">
+            {{ form(form, {attr: {'class': 'flex flex-col space-y-4'}}) }}
+        {% else %}
+            <p class="text-base leading-7 text-gray-700 font-light text-justify">
+                {{ message }}
+            </p>    
+            <hr class="my-4">
+            <a href="{{ path('app_index') }}" class="text-sm font-medium rounded-md bg-red-600 px-5 py-2.5 mt-3 text-white shadow hover:bg-red-700 focus:outline-none focus:ring active:bg-red-500 sm:w-auto">Retry</a>
+        {% endif %}
     </div>
 {% endblock %}
