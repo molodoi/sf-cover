@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome!{% endblock %}
+
+{% block body %}
+    {% include('partial/navbar.html.twig') %}
+    <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+    {{ form(form, {attr: {'class': 'flex flex-col space-y-4'}}) }}
+    </div>
+{% endblock %}

@@ -1,20 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Create a cover letter with IA!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+     <section class="bg-gray-50">
+  <div
+    class="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center"
+  >
+    <div class="mx-auto max-w-xl text-center">
+      <h1 class="text-3xl font-extrabold sm:text-5xl">
+        Create a cover letter
+        <strong class="font-extrabold text-red-700 sm:block">
+          with IA!
+        </strong>
+      </h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+      <p class="mt-4 sm:text-xl sm:leading-relaxed">
+        Register, fill out the form, and get your cover letter in minutes.
+      </p>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/molodoi/web/projects_symfony/sf-cover/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/molodoi/web/projects_symfony/sf-cover/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
-</div>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a
+          class="block w-full rounded bg-red-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-red-700 focus:outline-none focus:ring active:bg-red-500 sm:w-auto"
+          href="{{ path('app_register') }}"
+        >
+          Register
+        </a>
+
+        <a
+          class="block w-full rounded px-12 py-3 text-sm font-medium text-red-600 shadow hover:text-red-700 focus:outline-none focus:ring active:text-red-500 sm:w-auto"
+          href="{{ path('app_login') }}"
+        >
+          Login
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
 {% endblock %}
